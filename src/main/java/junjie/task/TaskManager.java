@@ -1,7 +1,10 @@
+package junjie.task;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManager {
+    private static final String INDENT = " ".repeat(8);
     private final List<Task> tasks;
 
     public TaskManager() {
@@ -26,10 +29,10 @@ public class TaskManager {
 
     public void listTasks() {
         if (tasks.isEmpty()) {
-            System.out.println(JunJie.INDENT + "empty like my soul");
+            System.out.println(INDENT + "empty like my soul");
         }
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(JunJie.INDENT + (i + 1) + "." + tasks.get(i));
+            System.out.println(INDENT + (i + 1) + "." + tasks.get(i));
         }
     }
 }

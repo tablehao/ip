@@ -1,7 +1,15 @@
+package junjie;
+
 import java.util.Scanner;
 
+import junjie.task.TaskManager;
+import junjie.task.Task;
+import junjie.task.Todo;
+import junjie.task.Deadline;
+import junjie.task.Event;
+
 public class JunJie {
-    public static final String INDENT = " ".repeat(8);
+    private static final String INDENT = " ".repeat(8);
 
     public static void say(String message) {
         System.out.println("JunJie: " + message);
