@@ -3,6 +3,8 @@ package junjie.task;
 import java.util.ArrayList;
 import java.util.List;
 
+import junjie.exceptions.EmptyDescriptionException;
+
 public class TaskManager {
     private static final String INDENT = " ".repeat(8);
     private final List<Task> tasks;
@@ -11,7 +13,14 @@ public class TaskManager {
         tasks = new ArrayList<>();
     }
 
-    public void addTask(String taskType, String argument) {
+    public void addTask(String input) throws EmptyDescriptionException {
+        if (input.split(" ", 2).length < 2) {
+            throw new EmptyDescriptionException("must write description lah");
+        }
+
+        String taskType = input.split(" ", 2)[0];
+        String argument = input.split(" ", 2)[1];
+
         Task task = null;
         String description = "";
 
