@@ -11,12 +11,41 @@ public class TaskManager {
         tasks = new ArrayList<>();
     }
 
-    public void addTask(Task task) {
+    public void addTask(String taskType, String argument) {
+        Task task = null;
+        String description = "";
+
+        switch (taskType) {
+        case "todo":
+            description = argument;
+
+            task = new Todo(description);
+            break;
+        case "deadline":
+            description = argument.split(" /by ")[0];
+            String by = argument.split(" /by ")[1];
+            ;
+
+            task = new Deadline(description, by);
+            break;
+        case "event":
+            description = argument.split(" /from ")[0];
+            String from = argument.split(" /from ")[1].split(" /to ")[0];
+            String to = argument.split(" /from ")[1].split(" /to ")[1];
+
+            task = new Event(description, from, to);
+            break;
+        }
+
         tasks.add(task);
     }
 
     public Task getTask(int index) {
         return tasks.get(index);
+    }
+
+    public Task getLatestTask() {
+        return tasks.get(tasks.size() - 1);
     }
 
     public void markTaskDone(int index) {

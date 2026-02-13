@@ -3,10 +3,6 @@ package junjie;
 import java.util.Scanner;
 
 import junjie.task.TaskManager;
-import junjie.task.Task;
-import junjie.task.Todo;
-import junjie.task.Deadline;
-import junjie.task.Event;
 
 public class JunJie {
     private static final String INDENT = " ".repeat(8);
@@ -59,41 +55,14 @@ public class JunJie {
                 continue;
             }
 
-            if (input.startsWith("todo")) {
-                String description = input.split(" ", 2)[1];
+            if (input.startsWith("todo") || input.startsWith("deadline") || input.startsWith("event")) {
+                String taskType = input.split(" ", 2)[0];
+                String argument = input.split(" ", 2)[1];
 
-                Task task = new Todo(description);
-                taskManager.addTask(task);
-
-                say("Okay bro I add this to your list liao!");
-                System.out.println(INDENT + task);
-                continue;
-            }
-
-            if (input.startsWith("deadline")) {
-                String arguments = input.split(" ", 2)[1];
-                String description = arguments.split(" /by ")[0];
-                String by = arguments.split(" /by ")[1];
-
-                Task task = new Deadline(description, by);
-                taskManager.addTask(task);
+                taskManager.addTask(taskType, argument);
 
                 say("Okay bro I add this to your list liao!");
-                System.out.println(INDENT + task);
-                continue;
-            }
-
-            if (input.startsWith("event")) {
-                String arguments = input.split(" ", 2)[1];
-                String description = arguments.split(" /from ")[0];
-                String from = arguments.split(" /from ")[1].split(" /to ")[0];
-                String to = arguments.split(" /from ")[1].split(" /to ")[1];
-
-                Task task = new Event(description, from, to);
-                taskManager.addTask(task);
-
-                say("Okay bro I add this to your list liao!");
-                System.out.println(INDENT + task);
+                System.out.println(INDENT + taskManager.getLatestTask());
                 continue;
             }
 
