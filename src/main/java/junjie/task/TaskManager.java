@@ -65,6 +65,11 @@ public class TaskManager {
         tasks.get(index).markAsUndone();
     }
 
+    public Task deleteTask(int index) {
+        return tasks.remove(index);
+
+    }
+
     public void listTasks() {
         if (tasks.isEmpty()) {
             System.out.println(INDENT + "empty like my soul");
