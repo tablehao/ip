@@ -16,11 +16,14 @@ public class JunJie {
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
 
-        String input;
-        Scanner in = new Scanner(System.in);
-
-        say("Hello! I'm JunJie. What can I do for you?");
         try {
+            taskManager.importTasksFromFile();
+
+            String input;
+            Scanner in = new Scanner(System.in);
+
+            say("Hello! I'm JunJie. What can I do for you?");
+
             while (true) {
                 System.out.print("   You: ");
                 input = in.nextLine().strip();
@@ -67,7 +70,7 @@ public class JunJie {
 
                 throw new UnknownCommandException("Eh what talking you?");
             }
-        } catch (JunJieException e) {
+        } catch (Exception e) {
             say("Woi see what you do:");
             System.out.println(INDENT + e.getMessage());
         }
