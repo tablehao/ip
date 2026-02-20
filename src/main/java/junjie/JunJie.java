@@ -31,6 +31,7 @@ public class JunJie {
 
                 if (input.equals("bye")) {
                     say("wgt ord lo!");
+                    taskManager.exportTasksToFile();
                     break;
                 }
 
