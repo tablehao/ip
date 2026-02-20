@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import junjie.exceptions.JunJieException;
 import junjie.exceptions.UnknownCommandException;
+import junjie.task.Task;
 import junjie.task.TaskManager;
 
 public class JunJie {
@@ -62,6 +63,16 @@ public class JunJie {
 
                     say("Okay bro I add this to your list liao!");
                     System.out.println(INDENT + taskManager.getLatestTask());
+                    continue;
+                }
+
+                if (input.startsWith("delete")) {
+                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
+
+                    Task deletedTask = taskManager.deleteTask(index);
+
+                    say("This task is no more.");
+                    System.out.println(INDENT + deletedTask);
                     continue;
                 }
 
