@@ -13,6 +13,14 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getStatus() {
+        return (isDone ? "1" : "0");
+    }
+
     public void markAsDone() {
         isDone = true;
     }
