@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 import junjie.exceptions.JunJieException;
 import junjie.exceptions.UnknownCommandException;
+import junjie.storage.Storage;
 import junjie.task.Task;
-import junjie.task.TaskManager;
+import junjie.task.TaskList;
 
 public class JunJie {
     private static final String INDENT = " ".repeat(8);
@@ -15,11 +16,16 @@ public class JunJie {
     }
 
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+        TaskList taskManager;
+        Storage storage = new Storage();
 
         try {
-            taskManager.importTasksFromFile();
+            taskManager = storage.load();
+        } catch (JunJieException e) {
+            throw new RuntimeException(e);
+        }
 
+        try {
             String input;
             Scanner in = new Scanner(System.in);
 
@@ -31,7 +37,7 @@ public class JunJie {
 
                 if (input.equals("bye")) {
                     say("wgt ord lo!");
-                    taskManager.exportTasksToFile();
+                    storage.save(taskManager);
                     break;
                 }
 

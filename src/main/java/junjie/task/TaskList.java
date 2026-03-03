@@ -1,20 +1,20 @@
 package junjie.task;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import junjie.exceptions.EmptyDescriptionException;
 
-public class TaskManager {
+public class TaskList {
     private static final String INDENT = " ".repeat(8);
     private final List<Task> tasks;
 
-    public TaskManager() {
-        tasks = new ArrayList<>();
+    public TaskList() {
+        this.tasks = new ArrayList<>();
+    }
+
+    public TaskList(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void addTask(String input) throws EmptyDescriptionException {
@@ -82,51 +82,7 @@ public class TaskManager {
         }
     }
 
-    public void importTasksFromFile() throws IOException, EmptyDescriptionException {
-        File f = new File("./data/junjie.txt");
-        if (!f.exists()) {
-            f.getParentFile().mkdirs();
-            f.createNewFile();
-            System.out.println("no save file detected, making one now...");
-        } else {
-            Scanner s = new Scanner(f);
-            int index = 0;
-            while (s.hasNext()) {
-                String line = s.nextLine();
-                String input = line.split("\\|", 2)[0];
-                String done = line.split("\\|", 2)[1];
-
-                addTask(input);
-                if (done.equals("1")) {
-                    markTaskDone(index);
-                }
-                index++;
-            }
-        }
-    }
-
-    public void exportTasksToFile() throws IOException {
-        FileWriter fw = new FileWriter("./data/junjie.txt");
-
-        for (Task task : tasks) {
-            String line = "";
-            if (task instanceof Todo) {
-                line = "todo " + task.getDescription()
-                        + "|" + task.getStatus();
-            } else if (task instanceof Deadline) {
-                line = "deadline " + task.getDescription()
-                        + " /by " + ((Deadline) task).getBy()
-                        + "|" + task.getStatus();
-            } else if (task instanceof Event) {
-                line = "event " + task.getDescription()
-                        + " /from " + ((Event) task).getFrom()
-                        + " /to " + ((Event) task).getTo()
-                        + "|" + task.getStatus();
-            }
-            line += System.lineSeparator();
-            fw.write(line);
-        }
-
-        fw.close();
+    public List<Task> getAllTasks() {
+        return tasks;
     }
 }
