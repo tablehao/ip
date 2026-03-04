@@ -34,6 +34,18 @@ public class TaskList {
         return tasks.remove(index);
     }
 
+    public List<Task> findTasks(String keyword) {
+        List<Task> listOfTasks = new ArrayList<>();
+
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                listOfTasks.add(task);
+            }
+        }
+
+        return listOfTasks;
+    }
+
     public List<Task> getAllTasks() {
         return tasks;
     }

@@ -6,6 +6,7 @@ import junjie.commands.AddTodoCommand;
 import junjie.commands.Command;
 import junjie.commands.DeleteCommand;
 import junjie.commands.ExitCommand;
+import junjie.commands.FindCommand;
 import junjie.commands.ListCommand;
 import junjie.commands.MarkCommand;
 import junjie.commands.UnmarkCommand;
@@ -64,6 +65,11 @@ public class Parser {
         if (input.startsWith("delete ")) {
             int taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
             return new DeleteCommand(taskIndex);
+        }
+
+        if (input.startsWith("find ")) {
+            String keyword = input.split(" ", 2)[1];
+            return new FindCommand(keyword);
         }
 
         if (input.equals("bye")) {
