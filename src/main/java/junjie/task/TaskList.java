@@ -34,21 +34,6 @@ public class TaskList {
         return tasks.remove(index);
     }
 
-    public List<String> getAllTasksAsString() {
-        List<String> listOfTasks = new ArrayList<>();
-
-        if (tasks.isEmpty()) {
-            listOfTasks.add("empty like my soul");
-            return listOfTasks;
-        }
-
-        for (int i = 0; i < tasks.size(); i++) {
-            listOfTasks.add((i + 1) + "." + tasks.get(i));
-        }
-
-        return listOfTasks;
-    }
-
     public List<Task> getAllTasks() {
         return tasks;
     }

@@ -4,6 +4,8 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
+import junjie.task.Task;
+
 public class Ui {
     private static final String INDENT = " ".repeat(8);
 
@@ -39,10 +41,10 @@ public class Ui {
         }
     }
 
-    public void showMessage(String firstMessage, List<String> remainingMessages) {
-        say(firstMessage);
-        for (String message : remainingMessages) {
-            out.println(INDENT + message);
+    public void showMessage(String message, List<Task> listOfTasks) {
+        say(message);
+        for (int i = 0; i < listOfTasks.size(); i++) {
+            out.println(INDENT + (i + 1) + "." + listOfTasks.get(i));
         }
     }
 }
