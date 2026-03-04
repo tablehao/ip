@@ -1,96 +1,45 @@
 package junjie;
 
-import java.util.Scanner;
-
+import junjie.commands.Command;
 import junjie.exceptions.JunJieException;
-import junjie.exceptions.UnknownCommandException;
+import junjie.parser.Parser;
 import junjie.storage.Storage;
-import junjie.task.Task;
 import junjie.task.TaskList;
+import junjie.ui.Ui;
 
 public class JunJie {
-    private static final String INDENT = " ".repeat(8);
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    public static void say(String message) {
-        System.out.println("JunJie: " + message);
+    public JunJie() {
+        ui = new Ui();
+        storage = new Storage();
+
+        try {
+            tasks = storage.load();
+        } catch (JunJieException e) {
+            ui.showError(e.getMessage());
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String userInput = ui.getUserInput();
+                Command c = Parser.parse(userInput);
+                c.execute(storage, tasks, ui);
+                isExit = c.isExit();
+            } catch (JunJieException e) {
+                ui.showError(e.getMessage());
+            }
+        }
     }
 
     public static void main(String[] args) {
-        TaskList taskManager;
-        Storage storage = new Storage();
-
-        try {
-            taskManager = storage.load();
-        } catch (JunJieException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            String input;
-            Scanner in = new Scanner(System.in);
-
-            say("Hello! I'm JunJie. What can I do for you?");
-
-            while (true) {
-                System.out.print("   You: ");
-                input = in.nextLine().strip();
-
-                if (input.equals("bye")) {
-                    say("wgt ord lo!");
-                    storage.save(taskManager);
-                    break;
-                }
-
-                if (input.equals("list")) {
-                    say("Here is your list <3");
-
-                    taskManager.listTasks();
-                    continue;
-                }
-
-                if (input.startsWith("mark")) {
-                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
-
-                    taskManager.markTaskDone(index);
-
-                    say("Steady lah this task is mark as done.");
-                    System.out.println(INDENT + taskManager.getTask(index));
-                    continue;
-                }
-
-                if (input.startsWith("unmark")) {
-                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
-
-                    taskManager.markTaskUndone(index);
-
-                    say("Leopard never changes its spots...");
-                    System.out.println(INDENT + taskManager.getTask(index));
-                    continue;
-                }
-
-                if (input.startsWith("todo") || input.startsWith("deadline") || input.startsWith("event")) {
-                    taskManager.addTask(input);
-
-                    say("Okay bro I add this to your list liao!");
-                    System.out.println(INDENT + taskManager.getLatestTask());
-                    continue;
-                }
-
-                if (input.startsWith("delete")) {
-                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
-
-                    Task deletedTask = taskManager.deleteTask(index);
-
-                    say("This task is no more.");
-                    System.out.println(INDENT + deletedTask);
-                    continue;
-                }
-
-                throw new UnknownCommandException("Eh what talking you?");
-            }
-        } catch (Exception e) {
-            say("Woi see what you do:");
-            System.out.println(INDENT + e.getMessage());
-        }
+        new JunJie().run();
     }
 }
