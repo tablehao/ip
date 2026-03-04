@@ -17,10 +17,6 @@ public abstract class Task {
         return description;
     }
 
-    public String getStatus() {
-        return (isDone ? "1" : "0");
-    }
-
     public void markAsDone() {
         isDone = true;
     }
