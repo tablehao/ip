@@ -6,7 +6,6 @@ import junjie.task.TaskList;
 import junjie.ui.Ui;
 
 public abstract class Command {
-
     public abstract void execute(Storage storage, TaskList tasks, Ui ui) throws JunJieException;
 
     public boolean isExit() {
