@@ -34,7 +34,7 @@ public class Storage {
             Files.createDirectories(Paths.get("data"));
             Files.write(path, lines);
         } catch (IOException ioe) {
-            throw new StorageException("Error saving file: " + ioe.getMessage());
+            throw new StorageException("Error saving file: " + ioe);
         }
     }
 
@@ -54,7 +54,7 @@ public class Storage {
             return new TaskList(tasks);
 
         } catch (IOException ioe) {
-            throw new StorageException("Error reading saved file: " + ioe.getMessage());
+            throw new StorageException("Error reading saved file: " + ioe);
         }
     }
 
