@@ -1,5 +1,8 @@
 package junjie.task;
 
+/**
+ * An abstract class representing a generic task that has a description and completion status.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;

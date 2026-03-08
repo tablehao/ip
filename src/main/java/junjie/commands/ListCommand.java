@@ -8,6 +8,9 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * List all tasks in the task list.
+ */
 public class ListCommand extends Command {
     @Override
     public void execute(Storage storage, TaskList tasks, Ui ui) throws JunJieException {

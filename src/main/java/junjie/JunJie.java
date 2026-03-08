@@ -7,11 +7,20 @@ import junjie.storage.Storage;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Main class for the JunJie chatbot application.
+ * Initialises the application and handles the main execution loop.
+ */
 public class JunJie {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates a JunJie object initialised with UI, storage and task list.
+     * Attempts to load existing tasks from storage,
+     * else initialises an empty task list when it fails.
+     */
     public JunJie() {
         ui = new Ui();
         storage = new Storage();
@@ -24,6 +33,11 @@ public class JunJie {
         }
     }
 
+    /**
+     * Main execution loop of the application.
+     * Continuously prompts user for input, parses it, then executes the command.
+     * Loop terminates when an exit command is given.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

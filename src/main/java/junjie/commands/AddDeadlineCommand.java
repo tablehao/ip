@@ -7,6 +7,9 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Adds a deadline to the task list.
+ */
 public class AddDeadlineCommand extends Command {
     private final String description;
     private final String by;

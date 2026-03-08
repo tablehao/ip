@@ -5,6 +5,9 @@ import junjie.storage.Storage;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Terminates the program.
+ */
 public class ExitCommand extends Command {
     @Override
     public void execute(Storage storage, TaskList tasks, Ui ui) throws JunJieException {

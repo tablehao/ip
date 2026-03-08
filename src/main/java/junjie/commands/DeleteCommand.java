@@ -6,6 +6,9 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Deletes a task from the task list using its index in the list.
+ */
 public class DeleteCommand extends Command {
     private final int taskIndex;
 

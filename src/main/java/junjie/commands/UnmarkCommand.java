@@ -6,6 +6,9 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Mark a task as incomplete using its index in the list.
+ */
 public class UnmarkCommand extends Command {
     private final int taskIndex;
 

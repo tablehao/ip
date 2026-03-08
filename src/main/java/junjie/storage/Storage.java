@@ -14,15 +14,30 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.task.Todo;
 
+/**
+ * Handles saving and loading of tasks to and from a local file.
+ */
 public class Storage {
+    /**
+     * Default file path used for saving tasks.
+     */
     public static final String DEFAULT_STORAGE_PATH = "data/tasks.txt";
 
     public final Path path;
 
+    /**
+     * Creates a Storage object with the default file path.
+     */
     public Storage() {
         path = Paths.get(DEFAULT_STORAGE_PATH);
     }
 
+    /**
+     * Saves the {@code TaskList} data to the storage file.
+     *
+     * @param taskList TaskList containing tasks to be saved.
+     * @throws StorageException if an I/O error occurs while writing to file.
+     */
     public void save(TaskList taskList) throws StorageException {
         try {
             List<String> lines = new ArrayList<>();
@@ -38,6 +53,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the {@code TaskList} data from storage file, and then returns it.
+     * An empty {@code TaskList} is returned if the storage file does not exist.
+     *
+     * @return TaskList loaded with tasks from the storage file.
+     * @throws StorageException if an I/O error occurs while reading the file.
+     */
     public TaskList load() throws StorageException {
         if (!Files.exists(path)) {
             return new TaskList();
@@ -58,6 +80,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts a task that is saved as a string to a Task object.
+     *
+     * @param line a string that represents the task in file format.
+     * @return a Task object converted from the string.
+     * @throws StorageException if the task cannot be parsed properly.
+     */
     private Task convertLineToTask(String line) throws StorageException {
         String[] parts = line.split(" \\| ");
         String taskType = parts[0];

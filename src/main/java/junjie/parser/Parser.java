@@ -14,7 +14,17 @@ import junjie.exceptions.EmptyDescriptionException;
 import junjie.exceptions.JunJieException;
 import junjie.exceptions.UnknownCommandException;
 
+/**
+ * Parses user input and returns the corresponding Command object.
+ */
 public class Parser {
+    /**
+     * Parses user input from string to a corresponding Command object.
+     *
+     * @param input a string inputted by the user.
+     * @return a Command object corresponding to user input.
+     * @throws JunJieException if the user input is not a valid command.
+     */
     public static Command parse(String input) throws JunJieException {
         if (input.equals("list")) {
             return new ListCommand();
