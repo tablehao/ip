@@ -6,6 +6,9 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Mark a task as complete using its index in the list.
+ */
 public class MarkCommand extends Command {
     private final int taskIndex;
 

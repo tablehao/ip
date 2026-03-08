@@ -1,5 +1,8 @@
 package junjie.task;
 
+/**
+ * Represents a task that has a deadline.
+ */
 public class Deadline extends Task {
     protected String by;
 

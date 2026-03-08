@@ -1,5 +1,8 @@
 package junjie.task;
 
+/**
+ * Represents a basic task with no additional details.
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description);

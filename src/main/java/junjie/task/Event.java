@@ -1,5 +1,8 @@
 package junjie.task;
 
+/**
+ * Represents a task that occurs over a time period.
+ */
 public class Event extends Task {
     protected String from;
     protected String to;

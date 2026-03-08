@@ -7,6 +7,9 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Adds an event to the task list.
+ */
 public class AddEventCommand extends Command {
     private final String description;
     private final String from;

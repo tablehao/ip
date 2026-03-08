@@ -8,6 +8,9 @@ import junjie.task.Task;
 import junjie.task.TaskList;
 import junjie.ui.Ui;
 
+/**
+ * Finds all tasks whose description contains the keyword given.
+ */
 public class FindCommand extends Command {
     private final String keyword;
 

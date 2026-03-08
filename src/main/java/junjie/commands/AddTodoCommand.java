@@ -7,6 +7,9 @@ import junjie.task.TaskList;
 import junjie.task.Todo;
 import junjie.ui.Ui;
 
+/**
+ * Adds a todo to the task list.
+ */
 public class AddTodoCommand extends Command {
     private final String description;
 
